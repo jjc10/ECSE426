@@ -894,14 +894,14 @@ ARM Macro Assembler    Page 14
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\obj\startup_stm32f429_439xx.d -o.\obj\startup_stm32f429_439xx
-.o -I"C:\Users\jchata\Downloads\LCD Base Project\RTE" -I"C:\Users\jchata\Downlo
-ads\LCD Base Project\RTE\Device\STM32F429ZI" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.
-3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\RTOS\RTX\INC -IC:
-\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include -IC:\Keil_v5\ARM\PACK
-\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc --predefine="__RTX SETA 1
-" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 515" --pr
-edefine="_RTE_ SETA 1" --predefine="STM32F429_439xx SETA 1" --list=.\lst\startu
-p_stm32f429_439xx.lst RTE\Device\STM32F429ZI\startup_stm32f429_439xx.s
+.o -IC:\G3-Project\RTE -IC:\G3-Project\RTE\Device\STM32F429ZI -IC:\Keil_v5\ARM\
+PACK\ARM\CMSIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\
+RTOS\RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include -IC:
+\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc --predef
+ine="__RTX SETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSI
+ON SETA 515" --predefine="_RTE_ SETA 1" --predefine="STM32F429_439xx SETA 1" --
+list=.\lst\startup_stm32f429_439xx.lst RTE\Device\STM32F429ZI\startup_stm32f429
+_439xx.s
 
 
 

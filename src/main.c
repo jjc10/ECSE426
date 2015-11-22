@@ -15,7 +15,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "CC2500_driver.h"
+
+#include "wireless_controller.h"
+
 //static void delay(__IO uint32_t nCount)
 //{
 //  __IO uint32_t index = 0; 
@@ -228,12 +230,7 @@ uint8_t test[2];
 uint8_t write_test[2];
 int main (void) {
 	CC2500_LowLevel_Init();
-	CC2500_Read(test, CC2500_PARTNUM, 2);
-	int a[2]= {12, 8};
-	CC2500_Write(&a, CC2500_TEST0, 2);
-	CC2500_Read(write_test, CC2500_TEST0, 2);
-	//CC2500_Read(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t NumByteToRead)
-	
-	
-	
+	setup();
+	set_receive_mode();
+	read_RXFIFO();
 }
