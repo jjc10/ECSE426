@@ -1,6 +1,7 @@
 #include "wireless_controller.h"
 #include <stdio.h>
 
+
 uint8_t dummy_byte = DUMMY_BYTE;
 uint8_t status_byte = 0; // status byte
 uint8_t state_mask = 112;
@@ -27,8 +28,6 @@ void set_transmit_mode() {
 		CC2500_Read(&status_byte, CC2500_STX, 1);
 		flag = status_byte & state_mask;
 	}
-	
-	
 }
 
 void set_receive_mode() {
@@ -48,14 +47,26 @@ void flush_TXFIFO() {
 	CC2500_Write(&dummy_byte, CC2500_SFTX, 1);
 }
 
-//TODO: Investigate how to receive multiple bytes. 
+//TODO: proper timer to avoid skipping values
 void read_RXFIFO() {
+	set_receive_mode();
 	int readable_bytes = 0;
-	CC2500_Read(&status_byte, CC2500_SNOP, 1);
-	readable_bytes = status_byte & available_byte_mask;
+	int i;
 	int counter = 0;
-	CC2500_Read(buffer, CC2500_FIFO, readable_bytes);
+		while(1){
+			CC2500_Read((buffer + counter), CC2500_FIFO, 1);
+			readable_bytes = status_byte & available_byte_mask;		
+			//for (i = 0; i < 16800000; i++);
+			set_receive_mode();		
+			for (i = 0; i < 16800000; i++);
+			counter = (counter + 1) % 32;
+		}
+}
+
 	
+void transmit(uint8_t a) {
+	set_transmit_mode();
+	CC2500_Write(&a, CC2500_FIFO, 1);
 }
 
 

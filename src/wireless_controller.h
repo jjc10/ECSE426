@@ -6,7 +6,5 @@ void set_receive_mode();
 void flush_RXFIFO();
 void flush_TXFIFO();
 void read_RXFIFO();
+void transmit(uint8_t a);
 //set Csn low during transfer. Then SO should go low too.
-
-
-

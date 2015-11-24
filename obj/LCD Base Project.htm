@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\LCD Base Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\LCD Base Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Sat Nov 21 19:52:09 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Mon Nov 23 19:12:55 2015
 <BR><P>
 <H3>Maximum Stack Usage =         80 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -312,13 +312,15 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_RXFIFO
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[82]"></a>read_RXFIFO</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, wireless_controller.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = read_RXFIFO &rArr; CC2500_Read &rArr; CC2500_SendByte
+<P><STRONG><a name="[82]"></a>read_RXFIFO</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, wireless_controller.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = read_RXFIFO &rArr; set_receive_mode &rArr; flush_RXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
