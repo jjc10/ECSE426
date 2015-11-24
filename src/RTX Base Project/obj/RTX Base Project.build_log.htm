@@ -1,0 +1,400 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.16a
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Jhon Lee, Student, LIC=MGXAR-KYZQH-XBZEC-75X6W-FK8D4-J5BSS
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.16a
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 (build 20)
+Assembler:       Armasm.exe V5.06 (build 20)
+Linker/Locator:  ArmLink.exe V5.06 (build 20)
+Library Manager: ArmAr.exe V5.06 (build 20)
+Hex Converter:   FromElf.exe V5.06 (build 20)
+CPU DLL:         SARMCM3.DLL V5.16a
+Dialog DLL:      DCM.DLL V1.13.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.17.0
+Dialog DLL:      TCM.DLL V1.14.5.0
+ 
+<h2>Project:</h2>
+C:\Users\Bassam Riman\Documents\ecse-426\RTX Base Project\RTX Base Project.uvprojx
+Project File Date:  11/21/2015
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling fputc_debug.c...
+compiling acc_controller.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\acc_controller.c(39): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "acc_message" (declared at line 106)
+  		switch ( state ){
+  		^
+src\acc_controller.c: 3 warnings, 0 errors
+compiling temp_controller.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\temp_controller.c(86): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  					adcValue = adcValue * ref_Voltage_V / 3.3;
+src\temp_controller.c(46): warning:  #546-D: transfer of control bypasses initialization of:
+            variable "adcValue" (declared at line 79)
+            variable "ref_Voltage_V" (declared at line 83)
+            variable "temperature" (declared at line 89)
+  		switch ( state ){
+  		^
+src\temp_controller.c(41): warning:  #177-D: variable "returnCode" was declared but never referenced
+  	uint32_t returnCode;
+src\temp_controller.c(128): warning:  #1-D: last line of file ends without a newline
+  	
+src\temp_controller.c(18): warning:  #177-D: variable "MS_IN_SECONDS" was declared but never referenced
+  static const int MS_IN_SECONDS = 1000;
+src\temp_controller.c(19): warning:  #177-D: variable "ALARM_THRESHOLD" was declared but never referenced
+  static const int ALARM_THRESHOLD = 50;
+src\temp_controller.c(20): warning:  #177-D: variable "VT" was declared but never referenced
+  static const float VT = 1.2;
+src\temp_controller.c(21): warning:  #177-D: variable "TEMP_SENSOR_V25_V" was declared but never referenced
+  static const float TEMP_SENSOR_V25_V = 0.760;
+src\temp_controller.c(22): warning:  #177-D: variable "TEMP_SENSOR_AVG_SLOPE_V" was declared but never referenced
+  static const float TEMP_SENSOR_AVG_SLOPE_V = 0.0025;
+src\temp_controller.c(23): warning:  #177-D: variable "DAC_MAX" was declared but never referenced
+  static const float DAC_MAX= 0xfff;
+src\temp_controller.c: 12 warnings, 0 errors
+compiling movingAverageFilter.c...
+compiling keypad.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\keypad.c: 2 warnings, 0 errors
+compiling main.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\main.c: 2 warnings, 0 errors
+compiling program.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\program.c(31): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	return radians*180/
+I;
+src\program.c: 3 warnings, 0 errors
+compiling initialization.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\initialization.c(318): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	array[1] += 
+Offset;
+src\initialization.c(319): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	array[2] += 
+Offset;
+src\initialization.c: 4 warnings, 0 errors
+compiling RTX_Conf_CM.c...
+compiling misc.c...
+compiling lis302dl.c...
+compiling lis3dsh.c...
+Accelerometer_Drivers\src\lis3dsh.c(318): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+IS3DSH_SENSITIVITY_2G * (float)aggregateResult);
+Accelerometer_Drivers\src\lis3dsh.c(328): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+IS3DSH_SENSITIVITY_4G * (float)aggregateResult);
+Accelerometer_Drivers\src\lis3dsh.c(338): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+IS3DSH_SENSITIVITY_6G * (float)aggregateResult);
+Accelerometer_Drivers\src\lis3dsh.c(348): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+IS3DSH_SENSITIVITY_8G * (float)aggregateResult);
+Accelerometer_Drivers\src\lis3dsh.c(358): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+IS3DSH_SENSITIVITY_16G * (float)aggregateResult);
+Accelerometer_Drivers\src\lis3dsh.c: 5 warnings, 0 errors
+compiling LSM9DS1.c...
+src\LSM9DS1.c(151): warning:  #9-D: nested comment is not allowed
+    /* Configure latch Interrupt request, click interrupts and double click interrupts */                   
+src\LSM9DS1.c(351): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+SM9DS1_SENSITIVITY_2G * (float)aggregateResult);
+src\LSM9DS1.c(361): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+SM9DS1_SENSITIVITY_4G * (float)aggregateResult);
+src\LSM9DS1.c(371): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+SM9DS1_SENSITIVITY_8G * (float)aggregateResult);
+src\LSM9DS1.c(381): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+          *out =(float)(
+SM9DS1_SENSITIVITY_16G * (float)aggregateResult);
+src\LSM9DS1.c(331): warning:  #177-D: variable "offsetX" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c(331): warning:  #177-D: variable "offsetY" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c(331): warning:  #177-D: variable "offsetZ" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c(402): warning:  #177-D: variable "offsetX" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c(402): warning:  #177-D: variable "offsetY" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c(402): warning:  #177-D: variable "offsetZ" was declared but never referenced
+  	uint8_t offsetX, offsetY, offsetZ;
+src\LSM9DS1.c: 11 warnings, 0 errors
+compiling display_controller.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\display_controller.c(198): warning:  #1-D: last line of file ends without a newline
+  	
+src\display_controller.c: 3 warnings, 0 errors
+compiling stm32f4xx_adc.c...
+compiling segmentDisplay.c...
+src\segmentDisplay.h(33): warning:  #1-D: last line of file ends without a newline
+  void display_thread(void const *argument);
+src\keypad.h(13): warning:  #1-D: last line of file ends without a newline
+  }keypad_state;
+src\segmentDisplay.c: 2 warnings, 0 errors
+compiling stm32f4xx_can.c...
+compiling stm32f4xx_cryp_tdes.c...
+compiling stm32f4xx_crc.c...
+compiling stm32f4xx_cryp.c...
+compiling stm32f4xx_cryp_des.c...
+compiling stm32f4xx_dac.c...
+compiling stm32f4xx_cryp_aes.c...
+compiling stm32f4xx_dbgmcu.c...
+compiling stm32f4xx_dma.c...
+compiling stm32f4xx_dcmi.c...
+compiling stm32f4xx_exti.c...
+compiling stm32f4xx_fsmc.c...
+compiling stm32f4xx_flash.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_hash_sha1.c...
+compiling stm32f4xx_hash_md5.c...
+compiling stm32f4xx_iwdg.c...
+compiling stm32f4xx_pwr.c...
+compiling stm32f4xx_hash.c...
+compiling stm32f4xx_i2c.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_rng.c...
+compiling stm32f4xx_spi.c...
+compiling stm32f4xx_syscfg.c...
+compiling stm32f4xx_sdio.c...
+assembling startup_stm32f40_41xxx.s...
+compiling stm32f4xx_rtc.c...
+compiling stm32f4xx_tim.c...
+compiling stm32f4xx_usart.c...
+compiling stm32f4xx_wwdg.c...
+compiling system_stm32f4xx.c...
+linking...
+Program Size: Code=28916 RO-data=788 RW-data=232 ZI-data=14528  
+".\obj\RTX Base Project.axf" - 0 Error(s), 47 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.4.0.pack
+                ::CMSIS:RTOS:1.0 (API)
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: RTOS Version: 1.0
+   * Component: DSP Version: 1.4.6
+   * Component: CORE Version: 4.2.0
+   * Component: Keil RTX Version: 4.79.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.1.0.8.pack
+                Keil::Device:StdPeriph Drivers:Framework:1.3.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Framework Version: 1.3.1
+   * Component: DMA Version: 1.3.0
+   * Component: Flash Version: 1.3.0
+   * Component: DBGMCU Version: 1.3.0
+   * Component: FSMC Version: 1.3.0
+   * Component: CAN Version: 1.3.0
+   * Component: CRYP Version: 1.3.0
+   * Component: Startup Version: 1.3.1
+   * Component: DCMI Version: 1.3.0
+   * Component: EXTI Version: 1.3.0
+   * Component: ADC Version: 1.3.0
+   * Component: DAC Version: 1.3.0
+   * Component: GPIO Version: 1.3.0
+   * Component: CRC Version: 1.3.0
+   * Component: PWR Version: 1.3.0
+   * Component: RNG Version: 1.3.0
+   * Component: USART Version: 1.3.0
+   * Component: HASH Version: 1.3.0
+   * Component: SYSCFG Version: 1.3.0
+   * Component: RTC Version: 1.3.0
+   * Component: IWDG Version: 1.3.0
+   * Component: RCC Version: 1.3.0
+   * Component: I2C Version: 1.3.0
+   * Component: SDIO Version: 1.3.0
+   * Component: SPI Version: 1.3.0
+   * Component: WWDG Version: 1.3.0
+   * Component: TIM Version: 1.3.0
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\Bassam Riman\Documents\ecse-426\RTX Base Project\RTE
+  C:\Users\Bassam Riman\Documents\ecse-426\RTX Base Project\RTE\Device\STM32F407VG
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.4.0\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.4.0\CMSIS\RTOS\RTX\INC
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ::CMSIS:RTOS:1.0 (API)
+
+   * Component: ARM::CMSIS:DSP:1.4.6
+      Include file:  CMSIS\Include\arm_math.h
+      Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
+
+   * Component: ARM::CMSIS:CORE:4.2.0
+
+   * Component: ARM::CMSIS:RTOS:Keil RTX:4.79.0
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+
+   * Component: Keil::Device:StdPeriph Drivers:Framework:1.3.1
+      Source file:   Device\StdPeriph_Driver\templates\stm32f4xx_it.c
+      Source file:   Device\StdPeriph_Driver\templates\stm32f4xx_conf.h
+      Source file:   Device\StdPeriph_Driver\src\misc.c
+      Include file:  Device\StdPeriph_Driver\templates\stm32f4xx_it.h
+
+   * Component: Keil::Device:StdPeriph Drivers:DMA:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_dma.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_dma.c
+
+   * Component: Keil::Device:StdPeriph Drivers:Flash:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_flash.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_flash.c
+
+   * Component: Keil::Device:StdPeriph Drivers:DBGMCU:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_dbgmcu.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_dbgmcu.h
+
+   * Component: Keil::Device:StdPeriph Drivers:FSMC:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_fsmc.c
+
+   * Component: Keil::Device:StdPeriph Drivers:CAN:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_can.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_can.c
+
+   * Component: Keil::Device:StdPeriph Drivers:CRYP:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_cryp.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_cryp.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_cryp_aes.c
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_cryp_tdes.c
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_cryp_des.c
+
+   * Component: Keil::Device:Startup:1.3.1
+      Source file:   Device\Source\ARM\STM32F4xx_OTP.s
+      Source file:   Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
+      Include file:  RTE_Driver\Config\RTE_Device.h
+      Include file:  Device\Include\stm32f4xx.h
+      Source file:   Device\Source\system_stm32f4xx.c
+      Source file:   Device\Source\ARM\startup_stm32f40_41xxx.s
+
+   * Component: Keil::Device:StdPeriph Drivers:DCMI:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_dcmi.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_dcmi.c
+
+   * Component: Keil::Device:StdPeriph Drivers:EXTI:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_exti.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_exti.h
+
+   * Component: Keil::Device:StdPeriph Drivers:ADC:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_adc.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_adc.c
+
+   * Component: Keil::Device:StdPeriph Drivers:DAC:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_dac.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_dac.c
+
+   * Component: Keil::Device:StdPeriph Drivers:GPIO:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_gpio.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_gpio.c
+
+   * Component: Keil::Device:StdPeriph Drivers:CRC:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_crc.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_crc.h
+
+   * Component: Keil::Device:StdPeriph Drivers:PWR:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_pwr.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_pwr.c
+
+   * Component: Keil::Device:StdPeriph Drivers:RNG:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_rng.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_rng.h
+
+   * Component: Keil::Device:StdPeriph Drivers:USART:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_usart.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_usart.h
+
+   * Component: Keil::Device:StdPeriph Drivers:HASH:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_hash_md5.c
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_hash_sha1.c
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_hash.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_hash.h
+
+   * Component: Keil::Device:StdPeriph Drivers:SYSCFG:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_syscfg.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_syscfg.c
+
+   * Component: Keil::Device:StdPeriph Drivers:RTC:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_rtc.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_rtc.c
+
+   * Component: Keil::Device:StdPeriph Drivers:IWDG:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_iwdg.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_iwdg.c
+
+   * Component: Keil::Device:StdPeriph Drivers:RCC:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_rcc.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_rcc.h
+
+   * Component: Keil::Device:StdPeriph Drivers:I2C:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_i2c.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_i2c.c
+
+   * Component: Keil::Device:StdPeriph Drivers:SDIO:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_sdio.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_sdio.h
+
+   * Component: Keil::Device:StdPeriph Drivers:SPI:1.3.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_spi.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_spi.c
+
+   * Component: Keil::Device:StdPeriph Drivers:WWDG:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_wwdg.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_wwdg.h
+
+   * Component: Keil::Device:StdPeriph Drivers:TIM:1.3.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f4xx_tim.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f4xx_tim.h
+Build Time Elapsed:  00:00:12
+</pre>
+</body>
+</html>
