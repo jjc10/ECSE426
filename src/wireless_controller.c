@@ -55,18 +55,24 @@ void read_RXFIFO() {
 	int counter = 0;
 		while(1){
 			CC2500_Read((buffer + counter), CC2500_FIFO, 1);
+			CC2500_Read(&status_byte, CC2500_SNOP, 1);
 			readable_bytes = status_byte & available_byte_mask;		
 			//for (i = 0; i < 16800000; i++);
-			set_receive_mode();		
-			for (i = 0; i < 16800000; i++);
+			set_receive_mode();
+			for (i = 0; i < 16900000; i++);
 			counter = (counter + 1) % 32;
 		}
 }
 
 	
-void transmit(uint8_t a) {
+void transmit(uint8_t* array, int length) {
 	set_transmit_mode();
-	CC2500_Write(&a, CC2500_FIFO, 1);
+	int i;
+	for (i = 0; i < length; i++) {
+		CC2500_Read(&status_byte, CC2500_SNOP, 1);
+		set_transmit_mode();
+		CC2500_Write(array + i, CC2500_FIFO, 1);
+	}
 }
 
 

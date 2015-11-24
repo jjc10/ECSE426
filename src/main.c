@@ -230,8 +230,6 @@ uint8_t test[2];
 uint8_t write_test[2];
 int main (void) {
 	CC2500_LowLevel_Init();
-	
 	setup();
-	
 	read_RXFIFO();
 }
