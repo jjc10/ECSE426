@@ -232,6 +232,6 @@ int main (void) {
 	CC2500_LowLevel_Init();
 	
 	setup();
-	set_receive_mode();
+	
 	read_RXFIFO();
 }
