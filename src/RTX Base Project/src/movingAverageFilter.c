@@ -11,7 +11,7 @@
   */
 #include <stdio.h>
 
-static const int BUFFERSIZE = 35;
+static const int MAXBUFFERSIZE = 200;
 
 /*! \class filterState
  *  \brief The filterState structure definition.
@@ -20,9 +20,10 @@ static const int BUFFERSIZE = 35;
  * Also contains filter average, the average value of all numbers in the buffer.
  */
 typedef struct {
-
+	
+	int bufferSize;
 	 /*!< Circular Queue: Values are placed in the tail and taken out of the head with each iteration */
-	float filterValues[BUFFERSIZE]; /*!< This is a circular buffer */// USING GLOBALLY DEFINED CONSTANT
+	float filterValues[MAXBUFFERSIZE]; /*!< This is a circular buffer */// USING GLOBALLY DEFINED CONSTANT
 	int bufferPointer; /*!< This points to the head index in the circular buffer and should be MOD[BUFFERSIZE] */
 	/* End Circular Queue */
 	float filterAverage; /*!< The average of all values in the filter buffer which is computed after every time modify_filterState is called */
@@ -34,18 +35,29 @@ typedef struct {
 	* @param[in]  currentFilter This is the filter which we want to initialize.
   * @retval returnState Returns 1 if everything worked correctly and 0 otherwise.
   */
-int initializeFilter(filterState* currentFilter){
+int initializeFilter(filterState* currentFilter, int filterSize){
 	/* Loop and Indicator Variables */
 	int gtrdn;
 	int returnState=0; // No problems have occured if value stays at 1
 
+	if(filterSize > 200){
+		currentFilter->bufferSize = 200;
+	} else {
+		currentFilter->bufferSize = filterSize;
+	}
+	
+	
 	currentFilter->bufferPointer=0; // Points
 	currentFilter->filterAverage=0;
-
-	for(gtrdn = 0; gtrdn < BUFFERSIZE; gtrdn++){ 
-		currentFilter->filterValues[gtrdn] = 0; // Initializes the buffer to 0
+	
+	for(gtrdn = 0; gtrdn < MAXBUFFERSIZE; gtrdn++){ 
+		currentFilter->filterValues[gtrdn] = -333; // Initializes unused the buffer to -333
 	}
-
+	
+	for(gtrdn = 0; gtrdn < filterSize; gtrdn++){ 
+		currentFilter->filterValues[gtrdn] = 0; // Initializes used buffer to 0
+	}
+	
 	returnState=1;
 	return returnState;
 }
@@ -66,28 +78,29 @@ float modify_filterState(filterState* thisFilter, float value){
 	float sum=0;
 	float average;
 	
-	// placing index of head into a more readable variable
+	// placing index of head and size into a more readable variable
 	int headPointer = thisFilter->bufferPointer;
+	int size = thisFilter->bufferSize;
 	
 	// placing value into buffer
 	thisFilter->filterValues[headPointer]=value;
 	
-	// increment and ensure circularity maintained by modding by BUFFERSIZE
+	// increment and ensure circularity maintained by modding by bufferSize (size)
 	headPointer++;
-	if(headPointer >= BUFFERSIZE){
-		headPointer %= BUFFERSIZE;
+	if(headPointer >= size){
+		headPointer %= size;
 	}
 	
 	// place value of head pointer back into struct element
 	thisFilter->bufferPointer=headPointer;
 
 	// calculate average (not the most efficient way)
-	for(gtrdn = 0; gtrdn < BUFFERSIZE; gtrdn++){
+	for(gtrdn = 0; gtrdn < size; gtrdn++){
 		sum+=thisFilter->filterValues[gtrdn];
 		
 //		printf("THE SUM IN THE LOOP IS:\t%f\n", sum);
 	}
-	average=sum/BUFFERSIZE; // USING GLOBALLY DEFINED CONSTANT
+	average=sum/size; // USING GLOBALLY DEFINED CONSTANT
 	thisFilter->filterAverage=average;
 //	printf("Inner Filter Average is: %f\n", average);
 	// return average

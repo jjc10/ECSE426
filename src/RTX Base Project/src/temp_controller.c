@@ -50,7 +50,7 @@ void temp_thread(void const *argument){
 				/**************************************/
 			
 				temp_init();
-				initializeFilter(&smoothingFilter);
+				initializeFilter(&smoothingFilter, 35);
 			
 				/**************************************/
 				state = ST_IDLE ;

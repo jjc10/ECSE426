@@ -46,8 +46,8 @@ void acc_thread(void const *argument){
 			
 				//acc_init();
 				acc_ext_init();
-				initializeFilter(&accPitchFilter);
-				initializeFilter(&accRollFilter);
+				initializeFilter(&accPitchFilter, 35);
+				initializeFilter(&accRollFilter, 35);
 			
 				/**************************************/
 				state = ST_IDLE ;
