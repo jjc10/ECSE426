@@ -227,9 +227,17 @@
 //}
 
 uint8_t test[2];
-uint8_t write_test[2];
+uint8_t m_state = 0;
+uint8_t write_test_sed[4]= {'2', '2', 'X', '2'};
 int main (void) {
 	CC2500_LowLevel_Init();
 	setup();
-	read_RXFIFO();
+	//flush_RXFIFO();
+	//read_RXFIFO();
+	flush_TXFIFO();
+	set_transmit_mode();
+	//transmit(write_test_sed, 4);
+	//set_receive_mode();
+	CC2500_Read(&m_state, CC2500_MARCSTATE, 2);
+	
 }

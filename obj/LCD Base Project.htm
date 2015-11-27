@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\LCD Base Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\LCD Base Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Tue Nov 24 18:43:15 2015
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Thu Nov 26 23:08:22 2015
 <BR><P>
 <H3>Maximum Stack Usage =         80 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -186,7 +186,7 @@ Global Symbols
 
 <P><STRONG><a name="[df]"></a>_free_box</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, hal_cm4.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 168 bytes, Stack size 0 bytes, hal_cm4.o(.emb_text))
+<P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 148 bytes, Stack size 0 bytes, hal_cm4.o(.emb_text))
 <BR><BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
@@ -211,126 +211,125 @@ Global Symbols
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_systick
 </UL>
 
-<P><STRONG><a name="[73]"></a>main</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[73]"></a>main</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = main &rArr; CC2500_LowLevel_Init &rArr; GPIO_PinAFConfig
 </UL>
 <BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_TXFIFO
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> rtx_conf_cm.o(.data)
 </UL>
-<P><STRONG><a name="[83]"></a>CC2500_TIMEOUT_UserCallback</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cc2500_driver.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<P><STRONG><a name="[85]"></a>CC2500_TIMEOUT_UserCallback</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, cc2500_driver.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
 </UL>
 
-<P><STRONG><a name="[87]"></a>CC2500_Write</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
+<P><STRONG><a name="[89]"></a>CC2500_Write</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC2500_Write &rArr; CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_RXFIFO
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_TXFIFO
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_wireless
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_RXFIFO
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_wireless
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_TXFIFO
 </UL>
 
-<P><STRONG><a name="[8a]"></a>CC2500_Read</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
+<P><STRONG><a name="[83]"></a>CC2500_Read</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = CC2500_Read &rArr; CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[7f]"></a>CC2500_LowLevel_Init</STRONG> (Thumb, 274 bytes, Stack size 32 bytes, cc2500_driver.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = CC2500_LowLevel_Init &rArr; GPIO_PinAFConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphClockCmd
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphClockCmd
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinAFConfig
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[92]"></a>config_wireless</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
+<P><STRONG><a name="[93]"></a>config_wireless</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, cc2500_driver.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = config_wireless &rArr; CC2500_Write &rArr; CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
-<P><STRONG><a name="[93]"></a>fill_with_zeros</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, wireless_controller.o(.text))
+<P><STRONG><a name="[94]"></a>fill_with_zeros</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, wireless_controller.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setup
 </UL>
 
 <P><STRONG><a name="[80]"></a>setup</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, wireless_controller.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = setup &rArr; config_wireless &rArr; CC2500_Write &rArr; CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fill_with_zeros
-<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_wireless
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
+<BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fill_with_zeros
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;config_wireless
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[94]"></a>flush_TXFIFO</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, wireless_controller.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<P><STRONG><a name="[81]"></a>flush_TXFIFO</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, wireless_controller.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = flush_TXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
+<BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
 </UL>
-
-<P><STRONG><a name="[95]"></a>set_transmit_mode</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, wireless_controller.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_TXFIFO
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-</UL>
-<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;transmit
+<BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[96]"></a>flush_RXFIFO</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, wireless_controller.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = flush_RXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
+<P><STRONG><a name="[82]"></a>set_transmit_mode</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, wireless_controller.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = set_transmit_mode &rArr; flush_TXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
-</UL>
-<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
-</UL>
-
-<P><STRONG><a name="[97]"></a>set_receive_mode</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, wireless_controller.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = set_receive_mode &rArr; flush_RXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_RXFIFO
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-</UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
-</UL>
-
-<P><STRONG><a name="[81]"></a>read_RXFIFO</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, wireless_controller.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = read_RXFIFO &rArr; set_receive_mode &rArr; flush_RXFIFO &rArr; CC2500_Write &rArr; CC2500_SendByte
-</UL>
-<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_TXFIFO
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[98]"></a>transmit</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, wireless_controller.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_transmit_mode
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<P><STRONG><a name="[95]"></a>flush_RXFIFO</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, wireless_controller.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
+</UL>
+
+<P><STRONG><a name="[96]"></a>set_receive_mode</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, wireless_controller.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;flush_RXFIFO
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_RXFIFO
+</UL>
+
+<P><STRONG><a name="[97]"></a>read_RXFIFO</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, wireless_controller.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_receive_mode
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
+</UL>
+
+<P><STRONG><a name="[98]"></a>transmit</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, wireless_controller.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
 
 <P><STRONG><a name="[70]"></a>os_idle_demon</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_conf_cm.o(.text))
@@ -347,7 +346,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHB1PeriphResetCmd
 </UL>
 
-<P><STRONG><a name="[8e]"></a>GPIO_Init</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, stm32f4xx_gpio.o(.text))
+<P><STRONG><a name="[8f]"></a>GPIO_Init</STRONG> (Thumb, 144 bytes, Stack size 20 bytes, stm32f4xx_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
@@ -365,15 +364,15 @@ Global Symbols
 
 <P><STRONG><a name="[e5]"></a>GPIO_ReadOutputData</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[89]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<P><STRONG><a name="[8b]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 
-<P><STRONG><a name="[88]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<P><STRONG><a name="[8a]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
 
 <P><STRONG><a name="[e6]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text), UNUSED)
@@ -382,7 +381,7 @@ Global Symbols
 
 <P><STRONG><a name="[e8]"></a>GPIO_ToggleBits</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text), UNUSED)
 
-<P><STRONG><a name="[8d]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 70 bytes, Stack size 20 bytes, stm32f4xx_gpio.o(.text))
+<P><STRONG><a name="[8e]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 70 bytes, Stack size 20 bytes, stm32f4xx_gpio.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_PinAFConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
@@ -458,7 +457,7 @@ Global Symbols
 
 <P><STRONG><a name="[107]"></a>RCC_TIMCLKPresConfig</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[8c]"></a>RCC_AHB1PeriphClockCmd</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
+<P><STRONG><a name="[8d]"></a>RCC_AHB1PeriphClockCmd</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 
@@ -468,7 +467,7 @@ Global Symbols
 
 <P><STRONG><a name="[10a]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[8b]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
+<P><STRONG><a name="[8c]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 
@@ -481,11 +480,11 @@ Global Symbols
 <P><STRONG><a name="[10c]"></a>RCC_AHB3PeriphResetCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text), UNUSED)
 
 <P><STRONG><a name="[9e]"></a>RCC_APB1PeriphResetCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
+<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
 </UL>
 
 <P><STRONG><a name="[9d]"></a>RCC_APB2PeriphResetCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
+<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_DeInit
 </UL>
 
 <P><STRONG><a name="[10d]"></a>RCC_AHB1PeriphClockLPModeCmd</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text), UNUSED)
@@ -506,7 +505,7 @@ Global Symbols
 
 <P><STRONG><a name="[115]"></a>RCC_ClearITPendingBit</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text), UNUSED)
 
-<P><STRONG><a name="[8f]"></a>SPI_I2S_DeInit</STRONG> (Thumb, 152 bytes, Stack size 8 bytes, stm32f4xx_spi.o(.text))
+<P><STRONG><a name="[90]"></a>SPI_I2S_DeInit</STRONG> (Thumb, 152 bytes, Stack size 8 bytes, stm32f4xx_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_I2S_DeInit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
@@ -515,7 +514,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 
-<P><STRONG><a name="[90]"></a>SPI_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f4xx_spi.o(.text))
+<P><STRONG><a name="[91]"></a>SPI_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f4xx_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
@@ -527,7 +526,7 @@ Global Symbols
 
 <P><STRONG><a name="[118]"></a>I2S_StructInit</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text), UNUSED)
 
-<P><STRONG><a name="[91]"></a>SPI_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
+<P><STRONG><a name="[92]"></a>SPI_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_LowLevel_Init
 </UL>
 
@@ -545,12 +544,12 @@ Global Symbols
 
 <P><STRONG><a name="[11f]"></a>I2S_FullDuplexConfig</STRONG> (Thumb, 80 bytes, Stack size 12 bytes, stm32f4xx_spi.o(.text), UNUSED)
 
-<P><STRONG><a name="[86]"></a>SPI_I2S_ReceiveData</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<P><STRONG><a name="[88]"></a>SPI_I2S_ReceiveData</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
 </UL>
 
-<P><STRONG><a name="[85]"></a>SPI_I2S_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<P><STRONG><a name="[87]"></a>SPI_I2S_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
 </UL>
 
 <P><STRONG><a name="[120]"></a>SPI_CalculateCRC</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text), UNUSED)
@@ -565,8 +564,8 @@ Global Symbols
 
 <P><STRONG><a name="[125]"></a>SPI_I2S_ITConfig</STRONG> (Thumb, 32 bytes, Stack size 12 bytes, stm32f4xx_spi.o(.text), UNUSED)
 
-<P><STRONG><a name="[84]"></a>SPI_I2S_GetFlagStatus</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
+<P><STRONG><a name="[86]"></a>SPI_I2S_GetFlagStatus</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_SendByte
 </UL>
 
 <P><STRONG><a name="[126]"></a>SPI_I2S_ClearFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_spi.o(.text), UNUSED)
@@ -1094,7 +1093,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_pop_req
 </UL>
 
-<P><STRONG><a name="[66]"></a>rt_free_box</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, rt_membox.o(i.rt_free_box))
+<P><STRONG><a name="[66]"></a>rt_free_box</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, rt_membox.o(i.rt_free_box))
 <BR><BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tsk_delete
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> hal_cm4.o(.emb_text)
@@ -1325,7 +1324,7 @@ Global Symbols
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[c8]"></a>rt_tsk_create</STRONG> (Thumb, 120 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_create))
+<P><STRONG><a name="[c8]"></a>rt_tsk_create</STRONG> (Thumb, 112 bytes, Stack size 24 bytes, rt_task.o(i.rt_tsk_create))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = rt_tsk_create &rArr; rt_init_context &rArr; rt_init_stack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dbg_task_notify
@@ -1336,7 +1335,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcThreadCreate
 </UL>
 
-<P><STRONG><a name="[ca]"></a>rt_tsk_delete</STRONG> (Thumb, 346 bytes, Stack size 40 bytes, rt_task.o(i.rt_tsk_delete))
+<P><STRONG><a name="[ca]"></a>rt_tsk_delete</STRONG> (Thumb, 342 bytes, Stack size 40 bytes, rt_task.o(i.rt_tsk_delete))
 <BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = rt_tsk_delete &rArr; rt_dispatch &rArr; rt_put_prio
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_stk_check
@@ -1452,16 +1451,16 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[82]"></a>CC2500_SendByte</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, cc2500_driver.o(.text))
+<P><STRONG><a name="[84]"></a>CC2500_SendByte</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, cc2500_driver.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CC2500_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_ReceiveData
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_TIMEOUT_UserCallback
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_ReceiveData
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_TIMEOUT_UserCallback
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Write
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CC2500_Read
 </UL>
 
 <P><STRONG><a name="[9f]"></a>SetSysClock</STRONG> (Thumb, 272 bytes, Stack size 12 bytes, system_stm32f4xx.o(.text))
@@ -1474,7 +1473,7 @@ Local Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcTimerCall
 </UL>
 
-<P><STRONG><a name="[d0]"></a>rt_ms2tick</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, rt_cmsis.o(i.rt_ms2tick))
+<P><STRONG><a name="[d0]"></a>rt_ms2tick</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, rt_cmsis.o(i.rt_ms2tick))
 <BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMessageGet
 </UL>
 
