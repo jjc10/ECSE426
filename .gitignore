@@ -2,11 +2,9 @@
 *.o
 *.map
 *.axf
-*.uvoptx
 *.htm
 *.dep
 *.d
-*.uvprojx
 *.lnp
 *.lst
 *.mbeiro
