@@ -21,17 +21,17 @@ void Blinky_GPIO_Init(void){
 void Blinky(void const *argument){
 	while(1){
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-		//printf("hello world\n");
+		printf("hello world\n");
 		osDelay(250);
 	}
 }
 
-osThreadDef(Blinky, osPriorityNormal,1, 0);
-osThreadDef(temp_thread, osPriorityNormal, 1, 0);
+//osThreadDef(Blinky, osPriorityNormal,1, 0);
+//osThreadDef(temp_thread, osPriorityNormal, 1, 0);
 osThreadDef(acc_thread, osPriorityNormal, 1, 0);
-//osThreadDef(gyro_thread, osPriorityNormal, 1, 0);
-osThreadDef(display_controller_thread, osPriorityRealtime, 1, 0);
-osThreadDef(keypad_thread, osPriorityNormal, 1, 0);
+osThreadDef(gyro_thread, osPriorityNormal, 1, 0);
+//osThreadDef(display_controller_thread, osPriorityRealtime, 1, 0);
+//osThreadDef(keypad_thread, osPriorityNormal, 1, 0);
 
 // ID for thread
 osThreadId	Blinky_thread;
@@ -46,10 +46,7 @@ osThreadId	Keypad_thread;
  */
 int int0 = 0;
 int int1 = 0;
-float offset = 0;
-int calibrationThreshold = 500;
-filterState  gyroFilter;
-
+	
 int main (void) {
   //osKernelInitialize ();                    // initialize CMSIS-RTOS
 		
@@ -68,38 +65,21 @@ int main (void) {
 	gyro_init();
 	float xlData[3];
 	float gdData[3];
-	int counter = 0;
-	initializeFilter(&gyroFilter, 100);
 	
 	while(1){
 		if(int1 == 1){
 			int1 = 0;
 			LSM9DS1_ReadACC(xlData);
-			//printf("la");		
-		}
-		LSM9DS1_ReadGYRO(gdData);
-		if (int0 == 1 && counter <= calibrationThreshold) {
-			int0 = 0;
-			
-			offset = offset + gdData[1];
-			if (counter == calibrationThreshold) {
-				offset = offset / calibrationThreshold;
-			}
-			counter++;
-			continue;
+			printf("la");		
 		}
 		
 		if(int0 == 1){
 			int0 = 0;
-
 			LSM9DS1_ReadGYRO(gdData);
-			float calibrated = gdData[1] - offset;
-			float filtered = modify_filterState(&gyroFilter, calibrated);
-			printf("%f\n", filtered/*y*/);
+			printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 		}
 		
-		
-	}
+}
 	
 	
 }
