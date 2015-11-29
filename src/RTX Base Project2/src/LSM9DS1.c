@@ -436,48 +436,48 @@ void LSM9DS1_ReadGYRO(float* out)
   
 	ctrl = (ctrl & 0x18) >> 3;
 
-	for(i=0; i<0x06; i=i+2)
-	{
-		aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
-		*out =(float)((float)aggregateResult);
-		out++;
-	}
+//	for(i=0; i<0x06; i=i+2)
+//	{
+//		aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
+//		*out =(float)((float)aggregateResult);
+//		out++;
+//	}
 	
-//  switch(ctrl)
-//    {
-//    /* FS bits = 00 ==>  Sensitivity typical value = 245dps*/
-//    case 0x00:
-//      for(i=0; i<0x06; i=i+2)
-//      {
-//				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
-//        *out =(float)(LSM9DS1_SENSITIVITY_245dps * (float)aggregateResult);
-//        out++;
-//      }
-//      break;
-//			
-//    /* FS bit = 01 ==>  Sensitivity typical value = 500dps*/
-//    case 0x01:
-//      for(i=0; i<0x06; i=i+2)
-//      {
-//				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
-//        *out =(float)(LSM9DS1_SENSITIVITY_500dps * (float)aggregateResult);
-//        out++;
-//      }         
-//      break;		
-//			
-//		 /* FS bit = 11 ==> Sensitivity typical value = 2000dps*/
-//    case 0x03:
-//      for(i=0; i<0x06; i=i+2)
-//      {
-//				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
-//        *out =(float)(LSM9DS1_SENSITIVITY_2000dps * (float)aggregateResult);
-//        out++;
-//      }         
-//      break;
-//			
-//    default:
-//      break;
-//    }
+  switch(ctrl)
+    {
+    /* FS bits = 00 ==>  Sensitivity typical value = 245dps*/
+    case 0x00:
+      for(i=0; i<0x06; i=i+2)
+      {
+				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
+        *out =(float)(LSM9DS1_SENSITIVITY_245dps * (float)aggregateResult);
+        out++;
+      }
+      break;
+			
+    /* FS bit = 01 ==>  Sensitivity typical value = 500dps*/
+    case 0x01:
+      for(i=0; i<0x06; i=i+2)
+      {
+				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
+        *out =(float)(LSM9DS1_SENSITIVITY_500dps * (float)aggregateResult);
+        out++;
+      }         
+      break;		
+			
+		 /* FS bit = 11 ==> Sensitivity typical value = 2000dps*/
+    case 0x03:
+      for(i=0; i<0x06; i=i+2)
+      {
+				aggregateResult = (int32_t)(buffer[i] | buffer[i+1] << 8);
+        *out =(float)(LSM9DS1_SENSITIVITY_2000dps * (float)aggregateResult);
+        out++;
+      }         
+      break;
+			
+    default:
+      break;
+    }
  }
  
 /**

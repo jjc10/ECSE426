@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    main.c
   * @author  Bassam Riman 		260367410
-	*					 Matthew Beiruti 	XXXXXXXXX
+	*					 Matthew Beiruti 	260405550
   * @version V1.0.0
   * @date    10-October-2015
   * @brief   This file runs the main system states and delegates system actions 
@@ -142,6 +142,3 @@ void gyro_thread(void const *argument){
 
 }
 
-void setInterrupt_EXTI1(){
-		interrupt_EXTI1 = 1;
-}

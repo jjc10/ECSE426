@@ -48,6 +48,8 @@ void acc_thread(void const *argument){
 				acc_ext_init();
 				initializeFilter(&accPitchFilter, 35);
 				initializeFilter(&accRollFilter, 35);
+				
+				gyro_init();
 			
 				/**************************************/
 				state = ST_IDLE ;
@@ -148,3 +150,7 @@ void acc_thread(void const *argument){
 void setInterrupt_EXTI0(){
 		interrupt_EXTI0 = 1;
 }
+void setInterrupt_EXTI1(){
+		interrupt_EXTI1 = 1;
+}
+
