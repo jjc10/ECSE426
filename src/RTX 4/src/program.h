@@ -58,6 +58,12 @@ typedef enum {
 	ERR_ERROR_4		
 }err_type;
 
+//Step state
+typedef enum {
+	zero,
+	low,
+	high,	
+}step_states;
 
 //Constant
 

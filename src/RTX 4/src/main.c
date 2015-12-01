@@ -46,6 +46,78 @@ osThreadId	Keypad_thread;
  */
 int int0 = 0;
 int int1 = 0;
+
+step_states step_state = high;
+int high_count = 0;
+int low_count = 0;
+int zero_count = 0;
+
+int high_count_threshold = 30;
+int low_count_threshold = 30;
+int zero_count_threshold = 30;
+
+int high_threshold = 60000;
+int low_threshold = -60000;
+int zero_threshold = 8000;
+
+int calibration_count = 0;
+int calibration_limit = 200;
+
+void updateStepState(float gyro_y){
+		switch ( step_state ){
+				
+				/* Initialization state */
+				case zero : {
+					if(gyro_y >= high_threshold){
+						high_count++;
+						if (high_count >= high_count_threshold) {
+							step_state = high;
+							high_count = 0;
+							low_count = 0;
+							zero_count = 0;
+							printf("High\n");
+						}
+					}
+					break;
+				}
+				case high : {
+					if(gyro_y <= low_threshold){
+						low_count++;
+						if (low_count >= low_count_threshold) {
+							step_state = low;
+							high_count = 0;
+							low_count = 0;
+							zero_count = 0;
+							printf("Low\n");
+						}
+					}
+					else if(fabs(gyro_y) <= zero_threshold){
+						zero_count++;
+						if (zero_count >= zero_count_threshold) {
+							step_state = zero;
+							high_count = 0;
+							low_count = 0;
+							zero_count = 0;
+							printf("Zero\n");
+						}
+					}
+					break;
+				}
+				case low :{
+					if(gyro_y >= high_threshold){
+						high_count++;
+						if (high_count >= high_count_threshold) {
+							step_state = high;
+							high_count = 0;
+							low_count = 0;
+							zero_count = 0;
+							printf("High\n");
+						}
+					}
+					break;
+				}
+			}
+}
 	
 int main (void) {
   //osKernelInitialize ();                    // initialize CMSIS-RTOS
@@ -65,18 +137,34 @@ int main (void) {
 	gyro_init();
 	float xlData[3];
 	float gdData[3];
+	float calibration_sum = 0;
+	filterState gyroYFilter;
+	initializeFilter(&gyroYFilter,25);
 	
 	while(1){
-		if(int1 == 1){
-			int1 = 0;
-			LSM9DS1_ReadACC(xlData);
-			printf("la");		
-		}
+//		if(int1 == 1){
+//			int1 = 0;
+//			LSM9DS1_ReadACC(xlData);
+//			printf("la");		
+//		}
 		
 		if(int0 == 1){
 			int0 = 0;
 			LSM9DS1_ReadGYRO(gdData);
-			printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
+			if (calibration_count <= calibration_limit) {
+				calibration_sum += gdData[1];
+				if (calibration_count == calibration_limit) {
+					calibration_sum = calibration_sum / calibration_limit;
+				}
+				calibration_count++;
+				continue;
+			}
+			
+			float calibrated_data = gdData[1] - calibration_sum;
+			float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_data);
+			updateStepState(filtered_gyro_y);
+			//printf("%f\n", filtered_gyro_y);
+			//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 		}
 		
 }
