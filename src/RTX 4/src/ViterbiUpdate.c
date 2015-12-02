@@ -6,6 +6,52 @@ float vitpsi[2 * NUM_STATES][NUM_OBS];
 float outputArray[2 * NUM_STATES];
 int mouj[NUM_OBS];
 
+void createTestGiven(hmm_desc* hmm) {
+    hmm->S = NUM_STATES;
+    hmm->V = OBS_TYPE;
+		hmm->transition[0][0] = 0.09;
+    hmm->transition[0][1] = 0.9;
+    hmm->transition[0][2] = 0.01;
+    hmm->transition[0][3] = 0;
+    
+    hmm->transition[1][0] = 0.09;
+    hmm->transition[1][1] = 0.01;
+    hmm->transition[1][2] = 0.9;
+    hmm->transition[1][3] = 0;
+    
+    hmm->transition[2][0] = 0.09;
+    hmm->transition[2][1] = 0.45;
+    hmm->transition[2][2] = 0.01;
+    hmm->transition[2][3] = 0.45;
+    
+    hmm->transition[3][0] = 0.5;
+    hmm->transition[3][1] = 0.5;
+    hmm->transition[3][2] = 0;
+    hmm->transition[3][3] = 0;
+    // DONE WITH TRANS
+    //EMISSION
+    hmm->emission[0][0] = 1;
+    hmm->emission[0][1] = 0;
+    hmm->emission[0][2] = 0;
+    
+    hmm->emission[1][0] = 0;
+    hmm->emission[1][1] = 1;
+    hmm->emission[1][2] = 0;
+    
+    hmm->emission[2][0] = 0;
+    hmm->emission[2][1] = 0;
+    hmm->emission[2][2] = 1;
+    
+    hmm->emission[3][0] = 0;
+    hmm->emission[3][1] = 1;
+    hmm->emission[3][2] = 0;
+    
+    hmm->prior[0] = 0.25;
+    hmm->prior[1] = 0.25;
+    hmm->prior[2] = 0.25;
+    hmm->prior[3] = 0.25;
+}
+
 int getIndexOfMax(float* matrix, int s) {
 	float max = matrix[0];
 	int res = 0;

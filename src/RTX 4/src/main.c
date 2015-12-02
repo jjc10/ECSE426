@@ -62,6 +62,8 @@ int zero_threshold = 8000;
 
 int calibration_count = 0;
 int calibration_limit = 200;
+int observations[40];
+int obs_count = 0;
 
 void updateStepState(float gyro_y){
 		switch ( step_state ){
@@ -76,6 +78,8 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
+							observations[obs_count] = high;
+							obs_count++;
 						}
 					}
 					break;
@@ -89,6 +93,8 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Low\n");
+							observations[obs_count] = low;
+							obs_count++;
 						}
 					}
 					else if(fabs(gyro_y) <= zero_threshold){
@@ -99,6 +105,8 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Zero\n");
+							observations[obs_count] = zero;
+							obs_count++;
 						}
 					}
 					break;
@@ -112,6 +120,8 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
+							observations[obs_count] = high;
+							obs_count++;
 						}
 					}
 					break;
@@ -171,6 +181,9 @@ int main (void) {
 			
 			
 			updateStepState(filtered_gyro_y);	
+			if (obs_count == 40) {
+				printf("DONE\n");
+			}
 			float gyroZAngle = gyroZAngle + (filtered_gyro_z / 238000.0); 
 			
 			printf("%f\n", gyroZAngle);
