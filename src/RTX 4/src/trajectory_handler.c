@@ -10,9 +10,11 @@ float previous_heading = 0;
 float heading_threshold = 30;
 
 void addToTrajectory(float angle, int number_of_steps) {
-	heading_pair new_heading_pair = {angle, number_of_steps};
-	trajectory[trajectory_array_i] = new_heading_pair;
-	trajectory_array_i++;
+	if(number_of_steps == 0){
+		heading_pair new_heading_pair= {angle, number_of_steps}; 	
+		trajectory[trajectory_array_i] = new_heading_pair;
+		trajectory_array_i++;
+	}
 }
 
 void updateTrajectory(float new_heading){
