@@ -31,6 +31,7 @@
 #include "gyro_controller.h"
 #include "display_controller.h"
 #include "cmsis_os.h"
+#include "ViterbiUpdate.h"
 
 
 

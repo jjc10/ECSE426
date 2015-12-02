@@ -154,50 +154,6 @@ int Viterbi_C(int* Observations, int Nobs, int* EstimatedStates, hmm_desc* hmm){
 	return 0;
 }
 
-int Viterbi_ASM(int* Observations, int Nobs, int* EstimatedStates, hmm_desc* hmm){
-	// Section A
-	float c[Nobs];	
-	
-	// Section B
-	int i;
-	float sum = 0;
-	for (i = 0; i < hmm->S; i++) {
-		vitpsi[i][0] = hmm->prior[i] * hmm->emission[i][Observations[0]];
-		sum += vitpsi[i][0];
-	}
-	
-	c[0] = 1.0 / sum;
-	for (i = 0; i < hmm->S; i++) {
-		vitpsi[i][0] *= c[0];
-	}
-	
-	//Section C
-	int t;
-	for (t = 1; t < Nobs; t++) {
-		float inputArray[hmm->S];
-		int j;
-		for (j = 0; j < hmm->S; j++) {
-			inputArray[j] = vitpsi[j][t - 1];
-		}
-		
-		extern int viterbiUpdateAsm(float* InputArray, float* OutputArray, hmm_desc* hmm, int Observation);
-		viterbiUpdateAsm(inputArray, outputArray, hmm, Observations[t]);
-		
-		for (j = 0; j < 2 * hmm->S; j++) {
-				vitpsi[j][t] = outputArray[j];
-		}
-	}
-	//Section D
-	
-	int index = findMaxIndexInColumn (vitpsi, Nobs - 1 , hmm->S);
-	
-	EstimatedStates[Nobs - 1] = index;
-	
-	for (i = Nobs - 1; i >= 0; i--) {
-		EstimatedStates[i - 1] = vitpsi[hmm-> S + EstimatedStates[i]][i];
-	}
-	return 0;
-}
 
 void printFloatArray(float * ptr, int size) {
 	int i;
