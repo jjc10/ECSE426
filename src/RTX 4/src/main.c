@@ -137,9 +137,12 @@ int main (void) {
 	gyro_init();
 	float xlData[3];
 	float gdData[3];
-	float calibration_sum = 0;
+	float calibration_gyro_y_sum = 0;
+	float calibration_gyro_z_sum = 0;
 	filterState gyroYFilter;
 	initializeFilter(&gyroYFilter,25);
+	filterState gyroZFilter;
+	initializeFilter(&gyroZFilter,25);
 	
 	while(1){
 //		if(int1 == 1){
@@ -152,18 +155,25 @@ int main (void) {
 			int0 = 0;
 			LSM9DS1_ReadGYRO(gdData);
 			if (calibration_count <= calibration_limit) {
-				calibration_sum += gdData[1];
+				calibration_gyro_y_sum += gdData[1];
+				calibration_gyro_z_sum += gdData[2];
 				if (calibration_count == calibration_limit) {
-					calibration_sum = calibration_sum / calibration_limit;
+					calibration_gyro_y_sum = calibration_gyro_y_sum / calibration_limit;
+					calibration_gyro_z_sum = calibration_gyro_z_sum / calibration_limit;
 				}
 				calibration_count++;
 				continue;
 			}
+			float calibrated_y_data = gdData[1] - calibration_gyro_y_sum;			
+			float calibrated_z_data = gdData[2] - calibration_gyro_z_sum;
+			float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
+			float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
 			
-			float calibrated_data = gdData[1] - calibration_sum;
-			float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_data);
-			updateStepState(filtered_gyro_y);
-			//printf("%f\n", filtered_gyro_y);
+			
+			updateStepState(filtered_gyro_y);	
+			float gyroZAngle = gyroZAngle + (filtered_gyro_z / 238000.0); 
+			
+			printf("%f\n", gyroZAngle);
 			//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 		}
 		
