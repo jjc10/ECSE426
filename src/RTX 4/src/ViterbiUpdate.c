@@ -46,10 +46,10 @@ void createTestGiven(hmm_desc* hmm) {
     hmm->emission[3][1] = 1;
     hmm->emission[3][2] = 0;
     
-    hmm->prior[0] = 0.25;
-    hmm->prior[1] = 0.25;
-    hmm->prior[2] = 0.25;
-    hmm->prior[3] = 0.25;
+    hmm->prior[0] = 1;
+    hmm->prior[1] = 0;
+    hmm->prior[2] = 0;
+    hmm->prior[3] = 0;
 }
 
 int getIndexOfMax(float* matrix, int s) {

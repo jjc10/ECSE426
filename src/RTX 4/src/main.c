@@ -64,7 +64,28 @@ int calibration_count = 0;
 int calibration_limit = 200;
 int observations[40];
 int obs_count = 0;
+int path[40];
 
+hmm_desc hmm1 = {4, 3,
+
+{
+	{0.09,0.9,0.01,0},
+	{0.09,0.01,0.9,0},
+	{0.09,0.45,0.01,0.45},
+	{0.5,0.5,0,0}
+},
+
+{
+	{1,0,0},
+	{0,1,0},
+	{0,0,1},
+	{0,1,0}
+},
+
+{0.25,0.25,0.25,0.25}
+};
+
+int test_arr [20] = {2,1,1,2,1,2,1,0,1,2,1,1,2,1,2,1,1,2,1,0};
 void updateStepState(float gyro_y){
 		switch ( step_state ){
 				
@@ -78,6 +99,7 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
+							printf("OBS COUNT %d\n", obs_count);
 							observations[obs_count] = high;
 							obs_count++;
 						}
@@ -94,6 +116,7 @@ void updateStepState(float gyro_y){
 							zero_count = 0;
 							printf("Low\n");
 							observations[obs_count] = low;
+							printf("OBS COUNT %d\n", obs_count);
 							obs_count++;
 						}
 					}
@@ -106,6 +129,7 @@ void updateStepState(float gyro_y){
 							zero_count = 0;
 							printf("Zero\n");
 							observations[obs_count] = zero;
+							printf("OBS COUNT %d\n", obs_count);
 							obs_count++;
 						}
 					}
@@ -121,6 +145,7 @@ void updateStepState(float gyro_y){
 							zero_count = 0;
 							printf("High\n");
 							observations[obs_count] = high;
+							printf("OBS COUNT %d\n", obs_count);
 							obs_count++;
 						}
 					}
@@ -181,12 +206,19 @@ int main (void) {
 			
 			
 			updateStepState(filtered_gyro_y);	
-			if (obs_count == 40) {
+			
+			if (obs_count == 12) {
 				printf("DONE\n");
+				printIntArray(observations, 12);
+				int vit = Viterbi_C(observations, 12, path, &hmm1);
+				printIntArray(path, 12);
+				return 0;
+				
+				
 			}
 			float gyroZAngle = gyroZAngle + (filtered_gyro_z / 238000.0); 
 			
-			printf("%f\n", gyroZAngle);
+		//	printf("%f\n", gyroZAngle);
 			//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 		}
 		
