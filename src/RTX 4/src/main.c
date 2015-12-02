@@ -47,183 +47,93 @@ osThreadId	Keypad_thread;
 int int0 = 0;
 int int1 = 0;
 
-step_states step_state = high;
-int high_count = 0;
-int low_count = 0;
-int zero_count = 0;
 
-int high_count_threshold = 30;
-int low_count_threshold = 30;
-int zero_count_threshold = 30;
 
-int high_threshold = 60000;
-int low_threshold = -60000;
-int zero_threshold = 8000;
+//hmm_desc hmm1 = {4, 3,
 
-int calibration_count = 0;
-int calibration_limit = 200;
-int observations[40];
-int obs_count = 0;
-int path[40];
+//{
+//	{0.09,0.9,0.01,0},
+//	{0.09,0.01,0.9,0},
+//	{0.09,0.45,0.01,0.45},
+//	{0.5,0.5,0,0}
+//},
 
-hmm_desc hmm1 = {4, 3,
+//{
+//	{1,0,0},
+//	{0,1,0},
+//	{0,0,1},
+//	{0,1,0}
+//},
 
-{
-	{0.09,0.9,0.01,0},
-	{0.09,0.01,0.9,0},
-	{0.09,0.45,0.01,0.45},
-	{0.5,0.5,0,0}
-},
+//{0.25,0.25,0.25,0.25}
+//};
 
-{
-	{1,0,0},
-	{0,1,0},
-	{0,0,1},
-	{0,1,0}
-},
+//int test_arr [20] = {2,1,1,2,1,2,1,0,1,2,1,1,2,1,2,1,1,2,1,0};
 
-{0.25,0.25,0.25,0.25}
-};
-
-int test_arr [20] = {2,1,1,2,1,2,1,0,1,2,1,1,2,1,2,1,1,2,1,0};
-void updateStepState(float gyro_y){
-		switch ( step_state ){
-				
-				/* Initialization state */
-				case zero : {
-					if(gyro_y >= high_threshold){
-						high_count++;
-						if (high_count >= high_count_threshold) {
-							step_state = high;
-							high_count = 0;
-							low_count = 0;
-							zero_count = 0;
-							printf("High\n");
-							printf("OBS COUNT %d\n", obs_count);
-							observations[obs_count] = high;
-							obs_count++;
-						}
-					}
-					break;
-				}
-				case high : {
-					if(gyro_y <= low_threshold){
-						low_count++;
-						if (low_count >= low_count_threshold) {
-							step_state = low;
-							high_count = 0;
-							low_count = 0;
-							zero_count = 0;
-							printf("Low\n");
-							observations[obs_count] = low;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
-						}
-					}
-					else if(fabs(gyro_y) <= zero_threshold){
-						zero_count++;
-						if (zero_count >= zero_count_threshold) {
-							step_state = zero;
-							high_count = 0;
-							low_count = 0;
-							zero_count = 0;
-							printf("Zero\n");
-							observations[obs_count] = zero;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
-						}
-					}
-					break;
-				}
-				case low :{
-					if(gyro_y >= high_threshold){
-						high_count++;
-						if (high_count >= high_count_threshold) {
-							step_state = high;
-							high_count = 0;
-							low_count = 0;
-							zero_count = 0;
-							printf("High\n");
-							observations[obs_count] = high;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
-						}
-					}
-					break;
-				}
-			}
-}
 	
 int main (void) {
-  //osKernelInitialize ();                    // initialize CMSIS-RTOS
+		//osKernelInitialize ();                    // initialize CMSIS-RTOS
+			
 		
-	
-	// initialize			
-	//Blinky_thread = osThreadCreate(osThread(Blinky), NULL);
-	//Temp_thread = osThreadCreate(osThread(temp_thread), NULL);
-	//Acc_thread = osThreadCreate(osThread(acc_thread), NULL);
-	//Gyro_thread = osThreadCreate(osThread(gyro_thread), NULL);
-	//Display_controller_thread = osThreadCreate(osThread(display_controller_thread), NULL);
-	//Keypad_thread = osThreadCreate(osThread(keypad_thread), NULL);
-	
-	//osKernelStart ();                         // start thread execution 
+		// initialize			
+		//Blinky_thread = osThreadCreate(osThread(Blinky), NULL);
+		//Temp_thread = osThreadCreate(osThread(temp_thread), NULL);
+		//Acc_thread = osThreadCreate(osThread(acc_thread), NULL);
+		//Gyro_thread = osThreadCreate(osThread(gyro_thread), NULL);
+		//Display_controller_thread = osThreadCreate(osThread(display_controller_thread), NULL);
+		//Keypad_thread = osThreadCreate(osThread(keypad_thread), NULL);
+		
+		//osKernelStart ();                         // start thread execution 
 
-	acc_init();
-	gyro_init();
-	float xlData[3];
-	float gdData[3];
-	float calibration_gyro_y_sum = 0;
-	float calibration_gyro_z_sum = 0;
-	filterState gyroYFilter;
-	initializeFilter(&gyroYFilter,25);
-	filterState gyroZFilter;
-	initializeFilter(&gyroZFilter,25);
-	
-	while(1){
-//		if(int1 == 1){
-//			int1 = 0;
-//			LSM9DS1_ReadACC(xlData);
-//			printf("la");		
-//		}
+		acc_init();
+		gyro_init();
+		float xlData[3];
+		float gdData[3];
+		float calibration_gyro_y_sum = 0;
+		float calibration_gyro_z_sum = 0;
+		filterState gyroYFilter;
+		initializeFilter(&gyroYFilter,25);
+		filterState gyroZFilter;
+		initializeFilter(&gyroZFilter,25);
+		int calibration_count = 0;
+		int calibration_limit = 200;
 		
-		if(int0 == 1){
-			int0 = 0;
-			LSM9DS1_ReadGYRO(gdData);
-			if (calibration_count <= calibration_limit) {
-				calibration_gyro_y_sum += gdData[1];
-				calibration_gyro_z_sum += gdData[2];
-				if (calibration_count == calibration_limit) {
-					calibration_gyro_y_sum = calibration_gyro_y_sum / calibration_limit;
-					calibration_gyro_z_sum = calibration_gyro_z_sum / calibration_limit;
+		while(1){
+	//		if(int1 == 1){
+	//			int1 = 0;
+	//			LSM9DS1_ReadACC(xlData);
+	//			printf("la");		
+	//		}
+			
+			if(int0 == 1){
+				int0 = 0;
+				LSM9DS1_ReadGYRO(gdData);
+				if (calibration_count <= calibration_limit) {
+					calibration_gyro_y_sum += gdData[1];
+					calibration_gyro_z_sum += gdData[2];
+					if (calibration_count == calibration_limit) {
+						calibration_gyro_y_sum = calibration_gyro_y_sum / calibration_limit;
+						calibration_gyro_z_sum = calibration_gyro_z_sum / calibration_limit;
+					}
+					calibration_count++;
+					continue;
 				}
-				calibration_count++;
-				continue;
-			}
-			float calibrated_y_data = gdData[1] - calibration_gyro_y_sum;			
-			float calibrated_z_data = gdData[2] - calibration_gyro_z_sum;
-			float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
-			float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
-			
-			
-			updateStepState(filtered_gyro_y);	
-			
-			if (obs_count == 12) {
-				printf("DONE\n");
-				printIntArray(observations, 12);
-				int vit = Viterbi_C(observations, 12, path, &hmm1);
-				printIntArray(path, 12);
-				return 0;
+				float calibrated_y_data = gdData[1] - calibration_gyro_y_sum;			
+				float calibrated_z_data = gdData[2] - calibration_gyro_z_sum;
+				float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
+				float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
 				
+				float heading = getHeading(filtered_gyro_z);
+				//printf("%f\n", heading);
+				updateStepState(filtered_gyro_y);	
+				updateTrajectory(heading);
+
 				
+				//printf("%f\n", gyroZAngle);
+				//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 			}
-			float gyroZAngle = gyroZAngle + (filtered_gyro_z / 238000.0); 
 			
-		//	printf("%f\n", gyroZAngle);
-			//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
-		}
-		
-}
-	
+	}
 	
 }
 

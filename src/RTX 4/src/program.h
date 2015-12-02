@@ -32,9 +32,9 @@
 #include "display_controller.h"
 #include "cmsis_os.h"
 #include "ViterbiUpdate.h"
-
-
-
+#include "trajectory_handler.h"
+#include "heading_handler.h"
+#include "step_handler.h"
 
 #define PI 3.141592653589
 typedef struct {
@@ -59,12 +59,7 @@ typedef enum {
 	ERR_ERROR_4		
 }err_type;
 
-//Step state
-typedef enum {
-	zero,
-	low,
-	high,	
-}step_states;
+
 
 //Constant
 
