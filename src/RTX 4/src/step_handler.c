@@ -11,12 +11,12 @@ int zero_count_threshold = 30;
 
 int high_threshold = 60000;
 int low_threshold = -60000;
-int zero_threshold = 8000;
+int zero_threshold = 10000;
 
 int number_of_steps = -1;
 
-int observations[40];
-int obs_count = 0;
+//int observations[100];
+//int obs_count = 0;
 
 void updateStepState(float gyro_y){
 		switch ( step_state ){
@@ -31,9 +31,9 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
-							printf("OBS COUNT %d\n", obs_count);
-							observations[obs_count] = high;
-							obs_count++;
+							//printf("OBS COUNT %d\n", obs_count);
+							//observations[obs_count] = high;
+							//obs_count++;
 						}
 					}
 					break;
@@ -47,9 +47,9 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Low\n");
-							observations[obs_count] = low;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
+							//observations[obs_count] = low;
+							//printf("OBS COUNT %d\n", obs_count);
+							//obs_count++;
 						}
 					}
 					else if(fabs(gyro_y) <= zero_threshold){
@@ -60,9 +60,9 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Zero\n");
-							observations[obs_count] = zero;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
+							//observations[obs_count] = zero;
+							//printf("OBS COUNT %d\n", obs_count);
+							//obs_count++;
 							number_of_steps++;
 						}
 					}
@@ -77,9 +77,9 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
-							observations[obs_count] = high;
-							printf("OBS COUNT %d\n", obs_count);
-							obs_count++;
+							//observations[obs_count] = high;
+							//printf("OBS COUNT %d\n", obs_count);
+							//obs_count++;
 						}
 					}
 					break;

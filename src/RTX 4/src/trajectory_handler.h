@@ -6,7 +6,7 @@ typedef enum {
 
 typedef struct heading_pair {
 	int step_count;
-	float heading;
+	int heading;
 } heading_pair;
 
-void updateTrajectory(float newHeading);
+void updateTrajectory(int newHeading);
