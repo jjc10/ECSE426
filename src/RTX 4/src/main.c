@@ -47,30 +47,6 @@ osThreadId	Keypad_thread;
 int int0 = 0;
 int int1 = 0;
 
-
-
-//hmm_desc hmm1 = {4, 3,
-
-//{
-//	{0.09,0.9,0.01,0},
-//	{0.09,0.01,0.9,0},
-//	{0.09,0.45,0.01,0.45},
-//	{0.5,0.5,0,0}
-//},
-
-//{
-//	{1,0,0},
-//	{0,1,0},
-//	{0,0,1},
-//	{0,1,0}
-//},
-
-//{0.25,0.25,0.25,0.25}
-//};
-
-//int test_arr [20] = {2,1,1,2,1,2,1,0,1,2,1,1,2,1,2,1,1,2,1,0};
-
-	
 int main (void) {
 		//osKernelInitialize ();                    // initialize CMSIS-RTOS
 			
@@ -123,7 +99,8 @@ int main (void) {
 				float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
 				float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
 				
-				float heading = getHeading(filtered_gyro_z);
+				int heading = getHeading(filtered_gyro_z);
+				//printf("%d\n", heading);
 				//printf("%f\n", heading);
 				updateStepState(filtered_gyro_y);	
 				updateTrajectory(heading);
