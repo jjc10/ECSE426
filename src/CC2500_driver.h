@@ -167,38 +167,38 @@
 /**
   * @brief  CC2500 SPI Interface pins
   */
-#define CC2500_SPI                       SPI4
-#define CC2500_SPI_CLK                   RCC_APB2Periph_SPI4
+#define CC2500_SPI                       SPI2
+#define CC2500_SPI_CLK                   RCC_APB1Periph_SPI2
 
-#define CC2500_SPI_SCK_PIN               GPIO_Pin_2                  /* PA.05 */
-#define CC2500_SPI_SCK_GPIO_PORT         GPIOE                       /* GPIOA */
-#define CC2500_SPI_SCK_GPIO_CLK          RCC_AHB1Periph_GPIOE
-#define CC2500_SPI_SCK_SOURCE            GPIO_PinSource2
-#define CC2500_SPI_SCK_AF                GPIO_AF_SPI4
+#define CC2500_SPI_SCK_PIN               GPIO_Pin_13                  /* PB.13 */
+#define CC2500_SPI_SCK_GPIO_PORT         GPIOB                       /* GPIOB */
+#define CC2500_SPI_SCK_GPIO_CLK          RCC_AHB1Periph_GPIOB
+#define CC2500_SPI_SCK_SOURCE            GPIO_PinSource13
+#define CC2500_SPI_SCK_AF                GPIO_AF_SPI2
 
-#define CC2500_SPI_MISO_PIN              GPIO_Pin_5                  /* PA.6 */
-#define CC2500_SPI_MISO_GPIO_PORT        GPIOE                       /* GPIOA */
-#define CC2500_SPI_MISO_GPIO_CLK         RCC_AHB1Periph_GPIOE
-#define CC2500_SPI_MISO_SOURCE           GPIO_PinSource5
-#define CC2500_SPI_MISO_AF               GPIO_AF_SPI4
+#define CC2500_SPI_MISO_PIN              GPIO_Pin_14                  /* PB.14 */
+#define CC2500_SPI_MISO_GPIO_PORT        GPIOB                       /* GPIOB */
+#define CC2500_SPI_MISO_GPIO_CLK         RCC_AHB1Periph_GPIOB
+#define CC2500_SPI_MISO_SOURCE           GPIO_PinSource14
+#define CC2500_SPI_MISO_AF               GPIO_AF_SPI2
 
-#define CC2500_SPI_MOSI_PIN              GPIO_Pin_6                  /* PA.7 */
-#define CC2500_SPI_MOSI_GPIO_PORT        GPIOE                       /* GPIOA */
-#define CC2500_SPI_MOSI_GPIO_CLK         RCC_AHB1Periph_GPIOE
-#define CC2500_SPI_MOSI_SOURCE           GPIO_PinSource6
-#define CC2500_SPI_MOSI_AF               GPIO_AF_SPI4
+#define CC2500_SPI_MOSI_PIN              GPIO_Pin_15                  /* PB.15 */
+#define CC2500_SPI_MOSI_GPIO_PORT        GPIOB                       /* GPIOB */
+#define CC2500_SPI_MOSI_GPIO_CLK         RCC_AHB1Periph_GPIOB
+#define CC2500_SPI_MOSI_SOURCE           GPIO_PinSource15
+#define CC2500_SPI_MOSI_AF               GPIO_AF_SPI2
 
-#define CC2500_SPI_CS_PIN                GPIO_Pin_3                  /* PE.03 */
-#define CC2500_SPI_CS_GPIO_PORT          GPIOE                       /* GPIOE */
-#define CC2500_SPI_CS_GPIO_CLK           RCC_AHB1Periph_GPIOE
+#define CC2500_SPI_CS_PIN                GPIO_Pin_12                 /* PE.4 */
+#define CC2500_SPI_CS_GPIO_PORT          GPIOB                       /* GPIOE */
+#define CC2500_SPI_CS_GPIO_CLK           RCC_AHB1Periph_GPIOB
 
-#define CC2500_SPI_INT1_PIN              GPIO_Pin_4                  /* PE.00 */
-#define CC2500_SPI_INT1_GPIO_PORT        GPIOE                       /* GPIOE */
-#define CC2500_SPI_INT1_GPIO_CLK         RCC_AHB1Periph_GPIOE
-#define CC2500_SPI_INT1_EXTI_LINE        EXTI_Line4
-#define CC2500_SPI_INT1_EXTI_PORT_SOURCE EXTI_PortSourceGPIOE
-#define CC2500_SPI_INT1_EXTI_PIN_SOURCE  EXTI_PinSource4
-#define CC2500_SPI_INT1_EXTI_IRQn        EXTI4_IRQn 
+#define CC2500_SPI_INT1_PIN              GPIO_Pin_11                  /* PB11 */
+#define CC2500_SPI_INT1_GPIO_PORT        GPIOB                       /* GPIOB */
+#define CC2500_SPI_INT1_GPIO_CLK         RCC_AHB1Periph_GPIOB
+#define CC2500_SPI_INT1_EXTI_LINE        EXTI_Line11
+#define CC2500_SPI_INT1_EXTI_PORT_SOURCE EXTI_PortSourceGPIOB
+#define CC2500_SPI_INT1_EXTI_PIN_SOURCE  EXTI_PinSource11
+#define CC2500_SPI_INT1_EXTI_IRQn        EXTI15_10_IRQn
 
 
 #define CC2500_CS_LOW()       GPIO_ResetBits(CC2500_SPI_CS_GPIO_PORT, CC2500_SPI_CS_PIN)
