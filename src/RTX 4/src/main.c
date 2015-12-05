@@ -3,7 +3,6 @@
  *---------------------------------------------------------------------------*/
 
 #include "initialization.h"
-#include "wireless_controller.h"
 
 void Blinky_GPIO_Init(void){
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -47,21 +46,10 @@ osThreadId	Keypad_thread;
  */
 int int0 = 0;
 int int1 = 0;
-uint8_t write_test_sed[4]= {'2', '2', 'X', '2'};
 uint8_t m_state = 0;
+uint8_t to_send[100];
+
 int main (void) {
-		//osKernelInitialize ();                    // initialize CMSIS-RTOS
-			
-		
-		// initialize			
-		//Blinky_thread = osThreadCreate(osThread(Blinky), NULL);
-		//Temp_thread = osThreadCreate(osThread(temp_thread), NULL);
-		//Acc_thread = osThreadCreate(osThread(acc_thread), NULL);
-		//Gyro_thread = osThreadCreate(osThread(gyro_thread), NULL);
-		//Display_controller_thread = osThreadCreate(osThread(display_controller_thread), NULL);
-		//Keypad_thread = osThreadCreate(osThread(keypad_thread), NULL);
-		
-		//osKernelStart ();                         // start thread execution 
 
 		acc_init();
 		gyro_init();
@@ -111,23 +99,18 @@ int main (void) {
 				//printf("%f\n", gyroZAngle);
 				//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
 			//}
+					delay(3000);
 					CC2500_LowLevel_Init();
 					setup();
-					//printf("running\n");
-					set_receive_mode();
-					//CC2500_Read();
-					uint8_t a = 7;
-					CC2500_Write(&a, CC2500_TEST0, 1);
-					uint8_t b = 0;
-					CC2500_Read(&b, CC2500_TEST0, 1);
 					//CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
 					//flush_RXFIFO();
 					//read_RXFIFO();
-					//flush_TXFIFO();
-					//set_transmit_mode();
-					//transmit(write_test_sed, 4);
-	//set_receive_mode();
-					//CC2500_Read(&m_state, CC2500_MARCSTATE, 2);
+					int length = build_transmittable_trajectory(to_send);
+					flush_TXFIFO();
+					set_transmit_mode();
+
+					
+					transmit(to_send, length);	
 	}
 
 

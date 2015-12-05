@@ -1,4 +1,5 @@
 //trajectory handling state
+#include <stdint.h>
 typedef enum {
 	sameHeading,
 	headingChange,
@@ -10,3 +11,5 @@ typedef struct heading_pair {
 } heading_pair;
 
 void updateTrajectory(int newHeading);
+
+int build_transmittable_trajectory(uint8_t* to_send);

@@ -35,6 +35,8 @@
 #include "trajectory_handler.h"
 #include "heading_handler.h"
 #include "step_handler.h"
+#include "wireless_controller.h"
+
 
 #define PI 3.141592653589
 typedef struct {

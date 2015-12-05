@@ -1,5 +1,4 @@
-#include "wireless_controller.h"
-#include <stdio.h>
+#include "initialization.h"
 
 
 uint8_t dummy_byte = DUMMY_BYTE;
@@ -90,7 +89,7 @@ void read_RXFIFO() {
 	}
 }
 
-uint8_t write_test[5]= {5, 5, 5, 5, 5};
+
 void transmit(uint8_t* array, int length) {
 	uint8_t i = 0;
 	uint8_t pending_write = 0;
@@ -105,35 +104,23 @@ void transmit(uint8_t* array, int length) {
 	} while (1);
 	
 	while (1) {
-		/*set_transmit_mode();
-		uint8_t a = 2;
-		CC2500_Write(&a, CC2500_FIFO, 1);
-		int i;
-		for (i = 0; i < 16900000; i++);
-		a = 5;
-		CC2500_Write(&a, CC2500_FIFO, 1);
-		for (i = 0; i < 16900000; i++);*/
-		
-		
-		
-		
 		CC2500_Read(s2, CC2500_MARCSTATE, 2);
 		
 		if (s2[0] == 22) {
 			i = 1;
 		} else if (s2[0] == 19 && pending_write == 0) {
-			CC2500_Write(write_test + i, CC2500_FIFO, 1);
-			i = (i + 1) % 5;
+			CC2500_Write(array + i, CC2500_FIFO, 1);
+			i = (i + 1) % length;
 			pending_write = 1;
 		} else {
 			CC2500_Read(s2 + 1, CC2500_STX, 1);
 			pending_write = 0;
 		}
 		for (uint32_t j = 0; j < 18641351; j++);
-		
-		
 	}
 	
 }
+
+
 
 

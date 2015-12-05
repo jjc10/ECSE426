@@ -112,8 +112,8 @@
 
 // freq set to 2.433 GHz, note f_xosc = 26MHz. Divide by 100 to get in GHz
 #define VAL_CC2500_FREQ2 		0x5D	//x5D --> 5D
-#define VAL_CC2500_FREQ1 		0x93	// 94 --> 94
-#define VAL_CC2500_FREQ0 		0xC5	// x02 --> DF
+#define VAL_CC2500_FREQ1 		0x94	// 94 --> 94
+#define VAL_CC2500_FREQ0 		0xDF	// x02 --> DF
 
 /*
 #define VAL_CC2500_FREQ2 		0x5D	//x5D --> 5D

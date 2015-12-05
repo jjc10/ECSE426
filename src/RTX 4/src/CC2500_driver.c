@@ -134,7 +134,7 @@ void CC2500_LowLevel_Init(void)
   SPI_InitTypeDef  SPI_InitStructure;
 
   /* Enable the SPI periph */
-  RCC_APB2PeriphClockCmd(CC2500_SPI_CLK, ENABLE);
+  RCC_APB1PeriphClockCmd(CC2500_SPI_CLK, ENABLE);
 
   /* Enable SCK, MOSI and MISO GPIO clocks */
   RCC_AHB1PeriphClockCmd(CC2500_SPI_SCK_GPIO_CLK | CC2500_SPI_MISO_GPIO_CLK | CC2500_SPI_MOSI_GPIO_CLK, ENABLE);

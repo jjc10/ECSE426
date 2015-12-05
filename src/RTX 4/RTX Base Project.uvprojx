@@ -496,6 +496,16 @@
               <FileType>1</FileType>
               <FilePath>.\src\heading_handler.c</FilePath>
             </File>
+            <File>
+              <FileName>CC2500_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\CC2500_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>wireless_controller.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\wireless_controller.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
