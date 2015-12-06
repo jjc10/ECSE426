@@ -49,6 +49,7 @@ int int1 = 0;
 uint8_t m_state = 0;
 uint8_t to_send[100];
 
+
 int main (void) {
 
 		acc_init();
@@ -58,59 +59,74 @@ int main (void) {
 		float calibration_gyro_y_sum = 0;
 		float calibration_gyro_z_sum = 0;
 		filterState gyroYFilter;
-		initializeFilter(&gyroYFilter,25);
 		filterState gyroZFilter;
-		initializeFilter(&gyroZFilter,25);
 		int calibration_count = 0;
 		int calibration_limit = 200;
-		
-	//	while(1){
-	//		if(int1 == 1){
-	//			int1 = 0;
-	//			LSM9DS1_ReadACC(xlData);
-	//			printf("la");		
-	//		}
-			
-//			if(int0 == 1){
-//				int0 = 0;
-//				LSM9DS1_ReadGYRO(gdData);
-//				if (calibration_count <= calibration_limit) {
-//					calibration_gyro_y_sum += gdData[1];
-//					calibration_gyro_z_sum += gdData[2];
-//					if (calibration_count == calibration_limit) {
-//						calibration_gyro_y_sum = calibration_gyro_y_sum / calibration_limit;
-//						calibration_gyro_z_sum = calibration_gyro_z_sum / calibration_limit;
-//					}
-//					calibration_count++;
-//					continue;
-//				}
-//				float calibrated_y_data = gdData[1] - calibration_gyro_y_sum;			
-//				float calibrated_z_data = gdData[2] - calibration_gyro_z_sum;
-//				float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
-//				float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
-//				
-//				int heading = getHeading(filtered_gyro_z);
-//				//printf("%d\n", heading);
-//				//printf("%f\n", heading);
-//				updateStepState(filtered_gyro_y);	
-//				updateTrajectory(heading);
+		initializeFilter(&gyroYFilter, 25);
+		initializeFilter(&gyroZFilter, 25);
+		int button_press = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0); // 0 when not pressed
+		int debounce_flag = 0;
+		int button_count = 0;
+		while (1) {
+			button_press = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0);
+			if (button_press == 1 && debounce_flag == 0) {
+				debounce_flag = 1;
+				printf("BUTTON PRESSED\n");
+				button_count++;
+			}
+			if (button_press == 0) {
+				debounce_flag = 0;
+			}
+			switch (button_count) {
+				case 0: {
+					break;
+				}
+				case 1: {
+					if(int0 == 1) {
+						int0 = 0;
+						int0 = 0;
+						LSM9DS1_ReadGYRO(gdData);
+					if (calibration_count <= calibration_limit) {
+						calibration_gyro_y_sum += gdData[1];
+						calibration_gyro_z_sum += gdData[2];
+						if (calibration_count == calibration_limit) {
+							calibration_gyro_y_sum = calibration_gyro_y_sum / calibration_limit;
+							calibration_gyro_z_sum = calibration_gyro_z_sum / calibration_limit;
+						}
+						calibration_count++;
+						continue;
+					}
+					float calibrated_y_data = gdData[1] - calibration_gyro_y_sum;			
+					float calibrated_z_data = gdData[2] - calibration_gyro_z_sum;
+					float filtered_gyro_y = modify_filterState(&gyroYFilter,calibrated_y_data);
+					float filtered_gyro_z = modify_filterState(&gyroZFilter,calibrated_z_data);
+					
+					int heading = getHeading(filtered_gyro_z);
+					updateStepState(filtered_gyro_y);	
+					updateTrajectory(heading);
+				}
+					
+				break;
+			}
+			case 2: {
+				print_trajectory();
+				return 0;
+			}
+		}
+	}
 
-				
-				//printf("%f\n", gyroZAngle);
-				//printf("%f\t%f\t%f\n", gdData[0]/*x*/, gdData[1]/*y*/, gdData[2]/*z*/);
-			//}
-					delay(3000);
-					CC2500_LowLevel_Init();
-					setup();
+					//delay(3000);
+					//CC2500_LowLevel_Init();
+					//setup();
 					//CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
 					//flush_RXFIFO();
 					//read_RXFIFO();
-					int length = build_transmittable_trajectory(to_send);
-					flush_TXFIFO();
-					set_transmit_mode();
+					//int length = build_transmittable_trajectory(to_send);
+					//flush_TXFIFO();
+					//set_transmit_mode();
 
 					
-					transmit(to_send, length);	
+					//transmit(to_send, length);	
 	}
 
 
@@ -138,4 +154,6 @@ void TIM3_IRQHandler(void)
 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
 	osSignalSet(Display_controller_thread, 0x1);
 }
+
+
 

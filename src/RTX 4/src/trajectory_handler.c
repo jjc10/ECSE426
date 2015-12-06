@@ -1,9 +1,6 @@
 #include "initialization.h"
 
 heading_pair trajectory [20];
-//heading_pair trajectory[3] = {{4, 0}, {2, 45}, {3, 90}};
-//heading_pair trajectory[3] = {{2, 0}, {15, 90}, {20, 45}};
-//int trajectory_array_i = 0;
 int trajectory_array_i = 0;
 
 
@@ -25,8 +22,6 @@ void addToTrajectory(int angle, int number_of_steps) {
 }
 
 void updateTrajectory(int new_heading){
-	//new_heading = getFixedHeading(new_heading);
-	//new_heading = roundAngle(new_heading, heading_threshold);
 	if(previous_heading != new_heading){
 		int number_steps = getNumberOfSteps();
 		addToTrajectory(previous_heading, number_steps );
@@ -61,4 +56,15 @@ int build_transmittable_trajectory(uint8_t* to_send) {
 	return index;
 }
 
+int get_number_of_points() {
+	return trajectory_array_i;
+}
+
+void print_trajectory() {
+	int i;
+	int data_points =  get_number_of_points();
+	for (i = 0; i < data_points; i++) {
+		printf("heading: %d\t steps: %d\n", trajectory[i].heading, trajectory[i].step_count);
+	}		
+}
 

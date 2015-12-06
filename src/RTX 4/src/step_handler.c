@@ -15,8 +15,7 @@ int zero_threshold = 10000;
 
 int number_of_steps = -1;
 
-//int observations[100];
-//int obs_count = 0;
+
 
 void updateStepState(float gyro_y){
 		switch ( step_state ){
