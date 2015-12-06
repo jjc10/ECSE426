@@ -10,7 +10,7 @@ int pair_count = 0;
 int previous_heading = 0;
 int heading_threshold = 45;
 
-int send_threshold = 5;
+int send_threshold = 20;
 
 
 void addToTrajectory(int angle, int number_of_steps) {

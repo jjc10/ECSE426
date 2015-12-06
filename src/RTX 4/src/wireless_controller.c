@@ -62,7 +62,6 @@ void flush_TXFIFO() {
 	CC2500_Write(&dummy_byte, CC2500_SFTX, 1);
 }
 
-//TODO: proper timer to avoid skipping values
 uint8_t bytes_received = 0;
 uint8_t m_state_read_rxfifo;
 void read_RXFIFO() {
@@ -70,13 +69,6 @@ void read_RXFIFO() {
 	CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
 	int bytes_read = 0;
 	uint32_t i;
-	
-	//TODO: Investigate why bytes_received is acting like a mofo
-	/*
-	while (bytes_received == 0) { // busy wait
-		CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
-		for (i = 0; i < 16800000; i++);
-	}*/
 	while (1) { // this should be replaced with check on number of bytes received
 		CC2500_Read((buffer + bytes_read), CC2500_FIFO, 1);
 		CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
@@ -103,14 +95,14 @@ void transmit(uint8_t* array, int length) {
 		}
 	} while (1);
 	
-	while (1) {
+	while (i < length) {
 		CC2500_Read(s2, CC2500_MARCSTATE, 2);
 		
 		if (s2[0] == 22) {
 			i = 1;
 		} else if (s2[0] == 19 && pending_write == 0) {
 			CC2500_Write(array + i, CC2500_FIFO, 1);
-			i = (i + 1) % length;
+			i = i + 1;
 			pending_write = 1;
 		} else {
 			CC2500_Read(s2 + 1, CC2500_STX, 1);
