@@ -16,12 +16,13 @@ int zero_threshold = 10000;
 int number_of_steps = -1;
 
 
-
+/**
+ * @brief  Updates the finite state machine representing the step state
+ * @param  gyro_y The y gyro reading
+ */
 void updateStepState(float gyro_y){
 		switch ( step_state ){
-				
-				/* Initialization state */
-				case zero : {
+              case zero : {
 					if(gyro_y >= high_threshold){
 						high_count++;
 						if (high_count >= high_count_threshold) {
@@ -30,9 +31,6 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
-							//printf("OBS COUNT %d\n", obs_count);
-							//observations[obs_count] = high;
-							//obs_count++;
 						}
 					}
 					break;
@@ -46,9 +44,6 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Low\n");
-							//observations[obs_count] = low;
-							//printf("OBS COUNT %d\n", obs_count);
-							//obs_count++;
 						}
 					}
 					else if(fabs(gyro_y) <= zero_threshold){
@@ -59,9 +54,6 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("Zero\n");
-							//observations[obs_count] = zero;
-							//printf("OBS COUNT %d\n", obs_count);
-							//obs_count++;
 							number_of_steps++;
 						}
 					}
@@ -76,9 +68,6 @@ void updateStepState(float gyro_y){
 							low_count = 0;
 							zero_count = 0;
 							printf("High\n");
-							//observations[obs_count] = high;
-							//printf("OBS COUNT %d\n", obs_count);
-							//obs_count++;
 						}
 					}
 					break;
@@ -86,10 +75,16 @@ void updateStepState(float gyro_y){
 			}
 }
 
+/**
+ * @brief  Returns the number of computed steps
+ */
 int getNumberOfSteps(){
 	return number_of_steps;
 }
 
+/**
+ * @brief  Resets the number of steps to 0
+ */
 void resetNumberOfSteps(){
 	number_of_steps = 0;
 }

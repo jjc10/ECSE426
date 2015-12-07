@@ -8,6 +8,12 @@ uint8_t state_mask = 112;
 uint8_t available_byte_mask = 15; // why 4 bits if 64 bytes in buffer
 uint8_t buffer[32]; // to read and write from fifo
 
+
+/**
+ * @brief  Sets all the elements in an array to 0
+ * @param  array array to be filled
+ * @param  length Size of array to be filled
+ */
 void fill_with_zeros(uint8_t* array, int length) {
 	int i;
 	for (i = 0; i < length; i++) {
@@ -15,6 +21,9 @@ void fill_with_zeros(uint8_t* array, int length) {
 	}
 }
 
+/**
+ * @brief  This function is responsible for setting up the necessary components for wireless communication
+ */
 void setup() {
 	config_wireless();
 	CC2500_Read(&status_byte, CC2500_STX, 1); // signal
@@ -22,6 +31,10 @@ void setup() {
 }
 
 uint8_t m_state_set_transmit = 0;
+
+/**
+ * @brief  This function is responsible for setting up the necessary components for wireless transmition
+ */
 void set_transmit_mode() {
 	CC2500_Read(&m_state_set_transmit, CC2500_MARCSTATE, 2);
 	while (m_state_set_transmit != 19 && m_state_set_transmit != 20) {
@@ -34,6 +47,10 @@ void set_transmit_mode() {
 }
 
 uint8_t m_state_set_receive = 0;
+
+/**
+ * @brief  This function is responsible for setting up the necessary components for wireless reception
+ */
 void set_receive_mode() {
 	CC2500_Read(&m_state_set_receive, CC2500_MARCSTATE, 2);
 	while(m_state_set_receive != 13 && m_state_set_receive != 14 && m_state_set_receive != 15) {
@@ -43,27 +60,29 @@ void set_receive_mode() {
 		CC2500_Read(&status_byte, CC2500_SRX, 1);
 		CC2500_Read(&m_state_set_receive, CC2500_MARCSTATE, 2);
 	}
-	
-	/*
-	uint8_t flag = status_byte & state_mask;
-	while (flag != 16) {
-		flush_RXFIFO();
-		CC2500_Read(&status_byte, CC2500_SRX, 1);
-		flag = status_byte & state_mask;
-	}
-	*/
 }
 
+
+/**
+ * @brief  Flushes the RXFIFO
+ */
 void flush_RXFIFO() {
 	CC2500_Write(&dummy_byte, CC2500_SFRX, 1);
 }
 
+/**
+ * @brief  Flushes the flush_TXFIFO
+ */
 void flush_TXFIFO() {
 	CC2500_Write(&dummy_byte, CC2500_SFTX, 1);
 }
 
 uint8_t bytes_received = 0;
 uint8_t m_state_read_rxfifo;
+
+/**
+ * @brief  This function reads what is being received by the transmitter
+ */
 void read_RXFIFO() {
 	set_receive_mode();
 	CC2500_Read(&bytes_received, CC2500_RXBYTES, 2);
@@ -81,7 +100,11 @@ void read_RXFIFO() {
 	}
 }
 
-
+/**
+ * @brief This function transmits wireless a given data array
+ * @param array The array to transmit
+ * @param length The size of the array
+ */
 void transmit(uint8_t* array, int length) {
 	uint8_t i = 0;
 	uint8_t pending_write = 0;

@@ -3,12 +3,24 @@
 float gyro_frequency = 238; //HZ
 float mD_to_D = 1000;	
 float heading = 0;
+
+/**
+ * @brief  Returns the heading given gyroscope data
+ * @param  gyro_data Value read from gyroscope
+ * @retval the angle of the heading
+ */
+
 int getHeading(float gyro_data){
 		heading = heading + (gyro_data / (mD_to_D * gyro_frequency)); 
 	  int res = normalizeAngle(heading);
 		return res;
 }
 
+/**
+ * @brief  Returns a normalized angle
+ * @param  angle1 Angle to be normalized
+ * @retval normalized angle
+ */
 int normalizeAngle(float angle1) {
 	int angle = (int) angle1;
 	if (abs(angle) > 360) {
@@ -20,18 +32,12 @@ int normalizeAngle(float angle1) {
 	return getFixedHeading45(angle);
 }
 
-//int roundAngle(int angle, int step) {
-//	int res = 0;
-//	int mod = angle % step;
-//	if (mod > (step / 2)) {
-//		res = (angle / step) * step + step;
-//	}
-//	else {
-//		res = (angle / step) * step;
-//	}
-//	return res;
-//}
 
+/**
+ * @brief  Discretizes an angle with a window of 30
+ * @param  a Angle to be discretized
+ * @retval The descritized value representing the given angle
+ */
 int getFixedHeading30(int a) {
 	if (a <= 15 || a > 345 ) {
 		return 0;
@@ -71,6 +77,11 @@ int getFixedHeading30(int a) {
 	}
 }
 
+/**
+ * @brief  Discretizes an angle with a window of 45
+ * @param  a Angle to be discretized
+ * @retval The descritized value representing the given angle
+ */
 int getFixedHeading45(int a) {
 	if (a <= 22.5 || a > 337.5) {
 		return 0;
